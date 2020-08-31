@@ -19,7 +19,9 @@
             
             <div class = "form-group">
                 {!! Form::label('status', 'STATUS') !!}
-                <input type = "text" class = "form-control" name = "status">
+        
+                <input type = "text" class = "form-control" name = "status" {!! Form::text('status') !!} 
+            
             </div>
             
             <div class = "form-group">
