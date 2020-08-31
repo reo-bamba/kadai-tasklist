@@ -17,7 +17,7 @@ class TasksController extends Controller
         $tasks = Task::all();
         return view('tasks.index', [
             'tasks' => $tasks
-            ]);
+        ]);
     }
 
     /**
@@ -43,6 +43,7 @@ class TasksController extends Controller
     {
         $request->validate([
             'status' => 'required|max:10',
+            'content' => 'required|max:255',
             ]);
         $task = new Task;
         $task->status = $request->status;
@@ -90,6 +91,7 @@ class TasksController extends Controller
     {
         $request->validate([
             'status' => 'required|max:10',
+            'content' => 'required|max:255',
             ]);
         $task = Task::FindOrFail($id);
         $task->status = $request->status;
