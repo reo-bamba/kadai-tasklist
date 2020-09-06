@@ -15,7 +15,7 @@
             
             <div class = "form-group">
                 {!! Form::label('email', 'Email') !!}
-                {!! Form::email('email', old('email'), ['class' => 'form-control'] !!}
+                {!! Form::email('email', old('email'), ['class' => 'form-control']) !!}
             </div>
             
             <div class = "form-group">
@@ -28,7 +28,7 @@
                 {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
             </div>
             
-            {!! Form::submit('Sign Up', ['class' => 'form-control']) !!}
+            {!! Form::submit('Sign Up', ['class' => 'btn btn-primary btn-block']) !!}
         {!! From::close() !!}
         </div>
     </div>
