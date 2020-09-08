@@ -77,9 +77,15 @@ class TasksController extends Controller
     public function show($id)
     {
         $task = \App\Task::FindOrFail($id);
+        
+        if(\Auth::id() === $task->user_id){
+        
+        
         return view('tasks.show', [
             'task' => $task
             ]);
+        }
+        else return redirect('/');
     }
 
     /**
@@ -91,9 +97,12 @@ class TasksController extends Controller
     public function edit($id)
     {
         $task = \App\Task::FindOrFail($id);
+        if (\Auth::id() === $task->user_id){
         return view('tasks.edit', [
             'task' => $task
             ]);
+        }
+        else return redirect('/');
     }
 
     /**
