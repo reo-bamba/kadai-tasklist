@@ -10,18 +10,23 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    return view('welcome');
-});
 
 //route::get('/', 'TasksController@index');
-route::resource('tasks', 'TasksController');
+route::resource('tasks', 'TasksController', ['only' => ['edit', 'store']]);
 
 //registration Users
-route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('signup.get');
-route::post('signup', 'Auth\RegisterController@register')->name('signup.post');
+Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('signup.get');
+Route::post('signup', 'Auth\RegisterController@register')->name('signup.post');
 
 // authentication
-route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-route::post('login', 'Auth\LoginController@login')->name('login.post');
-route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login')->name('login.post');
+Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
+
+Route::get('/','TasksController@index');
+//Route::post('tasks', 'TasksController@store')->name('tasks.store');
+//Route::get('tasks/{id}/edit', 'TasksController@edit')->name('tasks.edit');
+Route::group(['middleware' => ['auth']], function() {
+    Route::resource('tasks', 'TasksController', ['except' => ['index', 'edit', 'store']]);
+});
+
