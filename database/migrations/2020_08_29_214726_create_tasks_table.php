@@ -32,6 +32,8 @@ class CreateTasksTable extends Migration
     public function down()
     {
         Schema::dropIfExists('tasks');
+        {
         $table->dropForeign(['user_id']);
+        }
     }
 }
